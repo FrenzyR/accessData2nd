@@ -17,12 +17,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        ammountOfTimesInFileCharacter('a');
-        System.out.println("There's a total of " + ammountOfTimesInFileCharacter('a') + " 'a's in Don Quixote");
-        compareAmmountOfCharactersInFile();
+        timesInFileCharacter('a');
+        System.out.println("There's a total of " + timesInFileCharacter('a') + " 'a's in Don Quixote");
+        compareAppearancesOfCharacterInFile();
     }
 
-    public static int ammountOfTimesInFileCharacter(char givenCharacter) throws FileNotFoundException {
+    public static int timesInFileCharacter(char givenCharacter) throws FileNotFoundException {
         int charCounter = 0;
         for (int i = 0; i < donQuixote.length(); i++) {
             if (donQuixote.charAt(i)==givenCharacter){
@@ -33,7 +33,7 @@ public class Main {
 
     }
 
-    public static void compareAmmountOfCharactersInFile() throws FileNotFoundException {
+    public static void compareAppearancesOfCharacterInFile() throws FileNotFoundException {
         int charCounter = 0;
         int y = 0;
         HashMap<Character, Integer> comparison;
@@ -44,7 +44,7 @@ public class Main {
         }
         int comparisonNumber = 0;
         for (int i = 0; i < possibleLetters; i++) {
-            comparison.replace(donQuixote.charAt(i), ammountOfTimesInFileCharacter(donQuixote.charAt(i)));
+            comparison.replace(donQuixote.charAt(i), timesInFileCharacter(donQuixote.charAt(i)));
         }
         System.out.println(comparison);
 
