@@ -16,16 +16,16 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException { //TODO trycatch
         timesInFileCharacter('a');
-        System.out.println("There's a total of " + timesInFileCharacter('a') + " 'a's in Don Quixote");
+        //System.out.println("There's a total of " + timesInFileCharacter('a') + " 'a's in Don Quixote");
         compareAppearancesOfCharacterInFile();
     }
 
-    public static int timesInFileCharacter(char givenCharacter) throws FileNotFoundException {
+    public static int timesInFileCharacter(char givenCharacter) throws FileNotFoundException { //TODO file parametro
         int charCounter = 0;
         for (int i = 0; i < donQuixote.length(); i++) {
-            if (donQuixote.charAt(i)==givenCharacter){
+            if (donQuixote.charAt(i) == givenCharacter) {
                 charCounter++;
             }
         }
@@ -35,25 +35,30 @@ public class Main {
 
     public static void compareAppearancesOfCharacterInFile() throws FileNotFoundException {
         int charCounter = 0;
+        char givenChar;
         int y = 0;
         HashMap<Character, Integer> comparison;
         comparison = new HashMap<Character, Integer>();
-        while (y < possibleLetters){
-            comparison.put((char) ('a' + y), 0);
+        while (y < possibleLetters) {
+            givenChar = (char) ('a' + y);
+            comparison.put(givenChar, 0);
             y++;
         }
         int comparisonNumber = 0;
         for (int i = 0; i < possibleLetters; i++) {
-            comparison.replace(donQuixote.charAt(i), timesInFileCharacter(donQuixote.charAt(i)));
+            givenChar = (char) ('a' + i);
+            comparison.replace(givenChar, timesInFileCharacter(givenChar));
+
         }
         System.out.println(comparison);
+
 
     }
 
     public static StringBuilder quixoteStore() throws FileNotFoundException {
         StringBuilder donQuixote = new StringBuilder();
         Scanner quixoteReader = new Scanner(fileRoute);
-        while (quixoteReader.hasNext()){
+        while (quixoteReader.hasNext()) {
             donQuixote.append(quixoteReader.nextLine());
 
         }
