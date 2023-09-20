@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+    public static final int possibleLetters = 26;
     public static File fileRoute = new File("./quijote.txt");
     public static StringBuilder donQuixote;
 
@@ -17,23 +18,19 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         ammountOfTimesInFileCharacter('a');
-        ammountOfTimesInFileCharacter('b');
-        ammountOfTimesInFileCharacter('c');
+        System.out.println("There's a total of " + ammountOfTimesInFileCharacter('a') + " 'a's in Don Quixote");
         compareAmmountOfCharactersInFile();
     }
 
-    public static void ammountOfTimesInFileCharacter(char givenCharacter) throws FileNotFoundException {
-        char[] character = new char[26];
-        for (int i = 0; i < character.length; i++) {
-            character[i] = (char) ('a' + i);
-        }
+    public static int ammountOfTimesInFileCharacter(char givenCharacter) throws FileNotFoundException {
         int charCounter = 0;
         for (int i = 0; i < donQuixote.length(); i++) {
             if (donQuixote.charAt(i)==givenCharacter){
                 charCounter++;
             }
         }
-        System.out.println("There's " + charCounter + " instances of the character " + givenCharacter);
+        return charCounter;
+
     }
 
     public static void compareAmmountOfCharactersInFile() throws FileNotFoundException {
@@ -41,14 +38,13 @@ public class Main {
         int y = 0;
         HashMap<Character, Integer> comparison;
         comparison = new HashMap<Character, Integer>();
-        while (y < 26){
-            comparison.put((char) ('a' + y), y);
+        while (y < possibleLetters){
+            comparison.put((char) ('a' + y), 0);
             y++;
         }
-        char[] donQuixoteChars = donQuixote.toString().toCharArray();
-        for (char donQuixoteChar : donQuixoteChars) {
-            comparison.replace(donQuixoteChar, charCounter++);
-
+        int comparisonNumber = 0;
+        for (int i = 0; i < possibleLetters; i++) {
+            comparison.replace(donQuixote.charAt(i), ammountOfTimesInFileCharacter(donQuixote.charAt(i)));
         }
         System.out.println(comparison);
 
